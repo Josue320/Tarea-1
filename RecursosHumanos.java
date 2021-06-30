@@ -1,19 +1,17 @@
 package RecursosHumanos;
 
-import java.util.InputMismatchException;
-import java.util.Scanner;
-import java.util.regex.MatchResult;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
+import java.util.*;
 
 public class RecursosHumanos {
 	
 	 static String  nombre, FechaNacimiento, Dirrecion, EstadoCivil, Correo, NumeroDeTelefono, NivelDeEscolaridad, PuestoAlQueAspira,ExperienciaLaboral, Habilidades,Aspirante1, Aspirante2,salario; 
-	 static  String Idioma, Referencia,Anio1,Anio2,Anio3,Anio4,Anio5,Anio6;
-	 static int puntajeRespuestas=2,puntaje=0,sumaAnios=1,suma=0,suma1=0,sumaAnios1=20, puntajeAspirante1,puntajeAspirante2;
-	 int edad;
-	 int comprobacion;
+	 static  String Idioma, Referencia,Titulo,Anio1,Anio2,Anio3,Anio4,Anio5,Anio6;
+	 static int puntajeRespuestas=2;
+	 static int puntaje=0,puntaje2=0,sumaAnios=1,suma=0,suma1=0,sumaAnios1=20;
+	 static int edad;
+	 static int comprobacion;
+	 static int puntajeAspirante1;
+	 static int puntajeAspirante2;
 	 static boolean Repetir,Continuar;
 	 static double SalarioBruto,SalarioBrutoAnual,IR,MontoSindicato,MontoAntiguedad,SalarioTotal,Montoinss,Montoinsspatronal,MontoIr;
 	 static int Años,Antiguedad;
@@ -34,8 +32,9 @@ public class RecursosHumanos {
 	  	Renovacion[0] = "Renovacion temporal";
 	  	Renovacion[1] = "Contratacion fija";
 	  }
+	 static Scanner lector = new Scanner (System.in);
 	  
-	  public void ContratacionFin() {
+public void ContratacionFin() {
 		  	do {
 		  		try{
 		  			Repetir = false;
@@ -184,124 +183,7 @@ public class RecursosHumanos {
 		  		}
 		  	}
 		  }
-	 	public void jubilaciones() {
-	  		System.out.println("Ingrese los datos que se le pide a continuacion");
-	  		
-			System.out.println(" Nombre completo");
-			nombre=lector.nextLine();
-	  		while(nombre.equals("")) { 
-				System.out.println("El campo no puede estar vacio");
-				nombre=lector.nextLine();
-	  		}
-			
-			
-			System.out.println("");	
-			do {
-			do {
-			comprobacion=2;
-			try {
-								
-					System.out.println("Ingrese su edad");	
-					edad=lector.nextInt();
-					if(edad<18 || edad>60){
-						System.out.println("Ingrese una edad valida entre 18 y 60 años");
-					}
-			} catch (InputMismatchException e) {
-				System.out.println("Solo puede ingresar numeros");
-				lector.next();
-				comprobacion=1;	
-				
-			}
-			}while(comprobacion!=2);
-				
-				}while(edad<18 || edad>60);
-			if(edad==60) {
-				System.out.println("Usted ha llegado a la edad de jubilacion");	
-				System.out.println("Muchas Gracias por su valiosos aportes y servicios  a esta empresa");
-				System.out.println("");
-				System.out.println("Ahora se procedera a calcular su liquidacion");
-				System.out.println("");
-				System.out.println("Para su Liquidacion se tomaran en cuenta 6 años como maximo segun establecido en la ley");
-				System.out.println("En dado caso que halla trabajado con nosotros mas de 6 años");	 
-				System.out.println("");
-				System.out.println("Responda con si o no ");
-				System.out.println("");
-		  		System.out.println("Trabajo durante el 1 año");
-				Anio1= lector.nextLine();			
-				while(Anio1.equals("")){
-					System.out.println("El campo no puede estar vacio");
-					Anio1=lector.nextLine();
-				}
-				if(Anio1.equalsIgnoreCase("si")) {
-					suma=suma+1;				
-			}
-				System.out.println("");
-				System.out.println("Trabajo durante el 2 año");
-				Anio2= lector.nextLine();
-				while(Anio2.equals("")){
-					System.out.println("El campo no puede estar vacio");
-					Anio2=lector.nextLine();
-				}
-				if(Anio2.equalsIgnoreCase("si")) {
-					suma=suma+1;				
-			}
-				
-				System.out.println("");
-				System.out.println("Trabajo durante el 3 año");
-				Anio3= lector.nextLine();				
-				while(Anio3.equals("")){
-					System.out.println("El campo no puede estar vacio");
-					Anio3=lector.nextLine();
-				}
-				if(Anio3.equalsIgnoreCase("si")) {
-					suma=suma+1;				
-			}
-				System.out.println("");
-				System.out.println("Trabajo durante el 4 año");
-				Anio4= lector.nextLine();
-				while(Anio4.equals("")){
-					System.out.println("El campo no puede estar vacio");
-					Anio4=lector.nextLine();
-				}
-				if(Anio4.equalsIgnoreCase("si")) {
-					suma1=suma1+20;
-				}
-				
-				System.out.println("");
-				System.out.println("Trabajo durante el 5 año");
-				Anio5= lector.nextLine();
-				while(Anio5.equals("")){
-					System.out.println("El campo no puede estar vacio");
-					Anio5=lector.nextLine();
-				}
-				if(Anio5.equalsIgnoreCase("si")) {
-					suma1=suma1+20;
-				}
-				System.out.println("");
-				System.out.println("Trabajo durante el 6 año");
-				Anio6= lector.nextLine();
-				while(Anio6.equals("")){
-					System.out.println("El campo no puede estar vacio");
-					Anio6=lector.nextLine();
-				}
-				if(Anio6.equalsIgnoreCase("si")) {
-					suma1=suma1+20;
-				}
-				System.out.println("Ingrese su salario bruto mensual");
-				SalarioBruto = lector.nextDouble();
-				while(SalarioBruto<=0) {
-					System.out.println("Salario Bruto incorrecto");
-				}
-				Liquidacion=suma*SalarioBruto+((SalarioBruto/30)*(suma1));
-				System.out.println("Liquidacion: " +"C$" + Liquidacion );
-			}else {
-				System.out.println("Usted todavia puede seguir trabajando en esta empresa");	
-			}
-			
-			
-			
-	  	}
-	  public void PedirDatos() {
+public void PedirDatos() {
 	  		do {
 	  			try{
 	  				Repetir = false;
@@ -372,29 +254,19 @@ public class RecursosHumanos {
 	  		System.out.println("Monto del ingreso Neto = "+SalarioNeto);
 	  		System.out.println("");
 	  	}
-	 
-	Scanner lector = new Scanner (System.in);
-	
-	public void  Aspirante1() {
-
-	
-	
+public void  Aspirante1() {
 			System.out.println("Ingrese los datos que se le pide a continuacion");
 			System.out.println(" Nombre completo");
 			nombre=lector.nextLine();
 			while(nombre.equals("")) {
 				System.out.println("El campo no puede estar vacio");
 				nombre=lector.nextLine();
-			
 			}
-			 
-
 			System.out.println("");	
 			do {
 			do {
 			comprobacion=2;
 			try {
-			
 				System.out.println("Ingrese su edad");	
 				edad=lector.nextInt();
 				if(edad<18 || edad>59){
@@ -405,22 +277,19 @@ public class RecursosHumanos {
 				System.out.println("Solo puede ingresar numeros");
 				lector.next();
 				comprobacion=1;	
-				
 			}
 			}while(comprobacion!=2);
 			}while(edad<18 || edad>59); 
-				
-			
 			System.out.println("");	
 			System.out.println("Fecha de nacimiento");
-		    lector.nextLine();
+			lector.nextLine();
 		    FechaNacimiento=lector.nextLine();
 			System.out.println("");
 		while(FechaNacimiento.equals("")){
 			System.out.println("El campo no puede estar vacio");
 			FechaNacimiento=lector.nextLine();
 		}
-			System.out.println("Dirrecion");
+			System.out.println("Direccion");
 			Dirrecion=lector.nextLine();
 			while(Dirrecion.equals("")){
 				System.out.println("El campo no puede estar vacio");
@@ -458,66 +327,62 @@ public class RecursosHumanos {
 			System.out.println("Para las siguientes preguntas responda si o no");
 			System.out.println("Tiene Experiencia Laboral?");
 			ExperienciaLaboral=lector.nextLine();
+			if(ExperienciaLaboral.equalsIgnoreCase("si")) {
+				puntaje=puntaje+1;
+			}
 			while(ExperienciaLaboral.equals("")){
 				System.out.println("El campo no puede estar vacio");
 				ExperienciaLaboral=lector.nextLine();
 			}
-			if(ExperienciaLaboral.equalsIgnoreCase("si")) {
-				puntaje=puntaje+1;
+			System.out.println("");
+			System.out.println("Posee un titulo");
+			Titulo=lector.nextLine();
+			if(Titulo.equalsIgnoreCase("si")) {
+				puntaje=puntaje+1;								
 			}
-			
+			while(Titulo.equals("")){
+				System.out.println("El campo no puede estar vacio");
+				Titulo=lector.nextLine();
+			}
 			System.out.println("");
 			System.out.println("Sabe ingles");
 			Idioma=lector.nextLine();
+			if(Idioma.equalsIgnoreCase("si")) {
+				puntaje=puntaje+1;				
+		}
 			while(Idioma.equals("")){
 				System.out.println("El campo no puede estar vacio");
 				Idioma=lector.nextLine();
 			}
-			if(Idioma.equalsIgnoreCase("si")) {
-				puntaje=puntaje+1;				
-		}
-			
+				
 			System.out.println("");
 			System.out.println("Tiene referencia");
 			Referencia=lector.nextLine();
+			if(Referencia.equalsIgnoreCase("si")) {
+				puntaje=puntaje+1;								
+			}
 			while(Referencia.equals("")){
 				System.out.println("El campo no puede estar vacio");
 				Referencia=lector.nextLine();
-			}
-			if(Referencia.equalsIgnoreCase("si")) {
-				puntaje=puntaje+1;								
 			}
 			
 			puntajeAspirante1=puntajeRespuestas*puntaje;
 			System.out.println("Su puntaje es " + puntajeAspirante1);
 	
 	}
-	
-
-
-
-
-	
-
-
 public void  Aspirante2() {
-	
-	
 	System.out.println("Ingrese los datos que se le pide a continuacion");
 	System.out.println(" Nombre completo");
 	nombre=lector.nextLine();
 	while(nombre.equals("")) {
 		System.out.println("El campo no puede estar vacio");
 		nombre=lector.nextLine();
-	
 	}
-	
 	System.out.println("");	
 	do {
 	do {
 	comprobacion=2;
 	try {
-	
 		System.out.println("Ingrese su edad");	
 		edad=lector.nextInt();
 		if(edad<18 || edad>59){
@@ -528,11 +393,9 @@ public void  Aspirante2() {
 		System.out.println("Solo puede ingresar numeros");
 		lector.next();
 		comprobacion=1;	
-		
 	}
 	}while(comprobacion!=2);
 	}while(edad<18 || edad>59); 
-		
 	
 	System.out.println("");	
 	System.out.println("Fecha de nacimiento");
@@ -581,66 +444,163 @@ while(FechaNacimiento.equals("")){
 	System.out.println("Para las siguientes preguntas responda si o no");
 	System.out.println("Tiene Experiencia Laboral?");
 	ExperienciaLaboral=lector.nextLine();
+	if(ExperienciaLaboral.equalsIgnoreCase("si")) {
+		puntaje2=puntaje2+1;
+	}
 	while(ExperienciaLaboral.equals("")){
 		System.out.println("El campo no puede estar vacio");
 		ExperienciaLaboral=lector.nextLine();
 	}
-	if(ExperienciaLaboral.equalsIgnoreCase("si")) {
-		puntaje=puntaje+1;
+	System.out.println("");
+	System.out.println("Posee un titulo");
+	Titulo=lector.nextLine();
+	if(Titulo.equalsIgnoreCase("si")) {
+		puntaje2=puntaje2+1;								
 	}
-	
+	while(Titulo.equals("")){
+		System.out.println("El campo no puede estar vacio");
+		Titulo=lector.nextLine();
+	}
 	System.out.println("");
 	System.out.println("Sabe ingles");
 	Idioma=lector.nextLine();
+	if(Idioma.equalsIgnoreCase("si")) {
+		puntaje2=puntaje2+1;				
+}
 	while(Idioma.equals("")){
 		System.out.println("El campo no puede estar vacio");
 		Idioma=lector.nextLine();
 	}
-	if(Idioma.equalsIgnoreCase("si")) {
-		puntaje=puntaje+1;				
-}
-	
 	System.out.println("");
 	System.out.println("Tiene referencia");
 	Referencia=lector.nextLine();
+	if(Referencia.equalsIgnoreCase("si")) {
+		puntaje2=puntaje2+1;								
+	}
 	while(Referencia.equals("")){
 		System.out.println("El campo no puede estar vacio");
 		Referencia=lector.nextLine();
 	}
-	if(Referencia.equalsIgnoreCase("si")) {
-		puntaje=puntaje+1;								
-	}
-	
-	
-	puntajeAspirante2=puntajeRespuestas*puntaje;
-	System.out.println(puntajeAspirante2);
-
-
+	puntajeAspirante2=puntajeRespuestas*puntaje2;
+	System.out.println("Su puntaje es "+puntajeAspirante2);
 }
+public void jubilaciones() {
+		System.out.println("Ingrese los datos que se le pide a continuacion");
+
+	System.out.println(" Nombre completo");
+	nombre=lector.nextLine();
+		while(nombre.equals("")) { 
+		System.out.println("El campo no puede estar vacio");
+		nombre=lector.nextLine();
+		}
 
 
+	System.out.println("");	
+	do {
+	do {
+	comprobacion=2;
+	try {
 
+			System.out.println("Ingrese su edad");	
+			edad=lector.nextInt();
+			if(edad<18 || edad>60){
+				System.out.println("Ingrese una edad valida entre 18 y 60 años");
+			}
+	} catch (InputMismatchException e) {
+		System.out.println("Solo puede ingresar numeros");
+		lector.next();
+		comprobacion=1;	
 
-	public static void main(String[] args) {
+	}
+	}while(comprobacion!=2);
+
+		}while(edad<18 || edad>60);
+	if(edad==60) {
+		System.out.println("Usted ha llegado a la edad de jubilacion");	
+		System.out.println("Muchas Gracias por su valiosos aportes y servicios  a esta empresa");
+		System.out.println("");
+		System.out.println("Ahora se procedera a calcular su liquidacion");
+		System.out.println("");
+		System.out.println("Para su Liquidacion se tomaran en cuenta 6 años como maximo segun establecido en la ley");
+		System.out.println("En dado caso que halla trabajado con nosotros mas de 6 años");	 
+		System.out.println("");
+		System.out.println("Responda con si o no ");
+		System.out.println("");
+  		System.out.println("Trabajo durante el 1 año");
+		Anio1= lector.nextLine();			
+		while(Anio1.equals("")){
+			System.out.println("El campo no puede estar vacio");
+			Anio1=lector.nextLine();
+		}
+		if(Anio1.equalsIgnoreCase("si")) {
+			suma=suma+1;				
+	}
+		System.out.println("");
+		System.out.println("Trabajo durante el 2 año");
+		Anio2= lector.nextLine();
+		if(Anio2.equalsIgnoreCase("si")) {
+			suma=suma+1;				
+	}
+		while(Anio2.equals("")){
+			System.out.println("El campo no puede estar vacio");
+			Anio2=lector.nextLine();
+		}
+
+		System.out.println("");
+		System.out.println("Trabajo durante el 3 año");
+		Anio3= lector.nextLine();
+		if(Anio3.equalsIgnoreCase("si")) {
+			suma=suma+1;				
+	}
+		while(Anio3.equals("")){
+			System.out.println("El campo no puede estar vacio");
+			Anio3=lector.nextLine();
+		}
+
+		System.out.println("");
+		System.out.println("Trabajo durante el 4 año");
+		Anio4= lector.nextLine();
+		if(Anio4.equalsIgnoreCase("si")) {
+			suma1=suma1+20;
+		}
+		while(Anio4.equals("")){
+			System.out.println("El campo no puede estar vacio");
+			Anio4=lector.nextLine();
+		}
+
+		System.out.println("");
+		System.out.println("Trabajo durante el 5 año");
+		Anio5= lector.nextLine();
+		if(Anio5.equalsIgnoreCase("si")) {
+			suma1=suma1+20;
+		}
+		while(Anio5.equals("")){
+			System.out.println("El campo no puede estar vacio");
+			Anio5=lector.nextLine();
+		}
+		System.out.println("");
+		System.out.println("Trabajo durante el 6 año");
+		Anio6= lector.nextLine();
+		if(Anio6.equalsIgnoreCase("si")) {
+			suma1=suma1+20;
+		}
+		while(Anio6.equals("")){
+			System.out.println("El campo no puede estar vacio");
+			Anio6=lector.nextLine();
+		}
+		System.out.println("Ingrese su salario bruto mensual");
+		SalarioBruto = lector.nextDouble();
+
+		Liquidacion=suma*SalarioBruto+((SalarioBruto/30)*(suma1));
+		System.out.println("Liquidacion: " +"C$" + Liquidacion );
+	}else {
+		System.out.println("Usted todavia puede seguir trabajando en esta empresa");	
+	}
+	}
+public static void main(String[] args) {
 		
 		RecursosHumanos obj = new RecursosHumanos ();
-		 Scanner lector = new Scanner (System.in);
 	int opcion, comprobacion;
-
-	 String [] PuestosDeTrabajo = new String [12];
-		
-		PuestosDeTrabajo[0]="GerenteAdministrativo";
-		PuestosDeTrabajo[1]="GerenteDeVenta"; 
-		PuestosDeTrabajo[2]="Contador"; 
-		PuestosDeTrabajo[3]="AuxiliarDeContador";
-		PuestosDeTrabajo[4]="ResponsableCarteraYCobro"; 
-		PuestosDeTrabajo[5]="Cajera"; 
-		PuestosDeTrabajo[6]="Facturador"; 
-		PuestosDeTrabajo[7]="Secretaria";
-		PuestosDeTrabajo[8]="ResponsableBodega";
-		PuestosDeTrabajo[9]="Despachador";
-		PuestosDeTrabajo[10]="Repartidor1";
-		PuestosDeTrabajo[10]="Repartidor2";
 	do {
 		comprobacion=2;
 		try {
@@ -655,11 +615,7 @@ while(FechaNacimiento.equals("")){
 
 				opcion = lector.nextInt();
 	switch(opcion) {
-	
-	
-	case 1:
-		
-					
+	case 1:		
     System.out.println("Aspirante 1");
     obj.Aspirante1();
     System.out.println("Aspirante 2");
@@ -669,17 +625,18 @@ while(FechaNacimiento.equals("")){
 	}else if(puntajeAspirante2>puntajeAspirante1) {
 		System.out.println("Aspirante 2 Contratado");
 	}
-	break;
-							
+	if(puntajeAspirante2==puntajeAspirante1) {
+		System.out.println("Los dos aspirantes son aptos para el trabajo");
+	}
+	break;				
 	case 2:
 		obj.PedirDatos();
-				break;
-				
+				break;	
 	case 3:
-			obj.ContratacionFin();	
+		obj.ContratacionFin();
 				break;
 	case 4:
-				obj.jubilaciones();
+		obj.jubilaciones();
 				break;
 	case 5:break;
 				default: 
@@ -688,7 +645,7 @@ while(FechaNacimiento.equals("")){
 					System.out.println("");
 	}
 	}while(opcion != 5);
-				System.out.println("Muchas gracias por nuedtra aplicacion!");
+				System.out.println("Muchas gracias por usar nuestra aplicacion!");
 				System.out.println("Vuelva pronto!");
 			} catch (InputMismatchException e) {
 				System.out.println("");
@@ -699,12 +656,6 @@ while(FechaNacimiento.equals("")){
 			}
 			}while(comprobacion!=2);																
 	lector.close();
-	
 	}
-
-
-	
 		
 	}
-
-
