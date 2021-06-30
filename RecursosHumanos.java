@@ -1,8 +1,6 @@
 package RecursosHumanos;
 
-import java.util.InputMismatchException;
-import java.util.Scanner;
-
+import java.util.*;
 
 public class RecursosHumanos {
 	
@@ -10,17 +8,91 @@ public class RecursosHumanos {
 	static  String Idioma, Referencia, pregunta1, respuesta1;
 	 static int puntajeRespuestas=2;
 	 static int puntaje=0;
-	 int edad;
-	 int comprobacion;
+	 static int edad;
+	 static int comprobacion;
   static int puntajeAspirante1;
 	  static int puntajeAspirante2;
+	  static boolean Repetir,Continuar;
+	  static double SalarioBruto,SalarioBrutoAnual,IR,MontoSindicato,MontoAntiguedad,SalarioTotal,Montoinss,Montoinsspatronal,MontoIr;
+	  static int Años,Antiguedad;
+	  static double TotalDeducciones,SalarioNeto;
+	  static final double INSS = 7, INSSPatronal = 22.5;
+	  static final int Sindicato = 1;
+	  	public void PedirDatos() {
+	  		do {
+	  			try{
+	  				Repetir = false;
+	  				do {
+	  					System.out.println("Ingrese su salario bruto mensual");
+	  					SalarioBruto = lector.nextDouble();
+	  				}while(SalarioBruto<=0);
+	  				do {
+	  					System.out.println("Ingrese el monto de años trabajados");
+	  					Años = lector.nextInt();
+	  				}while(Años<0 || Años>60);
+	  		} catch(InputMismatchException ex) {
+	  			System.out.println("Ingreso un dato valido");
+	  			lector.next();
+	  			System.out.println("");
+	  			Repetir = true;
+	  		}
+	  		}while(Repetir);
+	  		SalarioBrutoAnual = SalarioBruto*12;
+	  		if(SalarioBrutoAnual<=100000) {
+	  			IR = 0;
+	  		}
+	  		if(SalarioBrutoAnual>100000 && SalarioBrutoAnual<=200000) {
+	  			IR = 15;
+	  		}
+	  		if(SalarioBrutoAnual>200000 && SalarioBrutoAnual<=350000) {
+	  			IR = 20;
+	  		}
+	  		if(SalarioBrutoAnual>350000 && SalarioBrutoAnual<=500000) {
+	  			IR = 25;
+	  		}
+	  		if(SalarioBrutoAnual>500000) {
+	  			IR = 30;
+	  		}
+	  		
+	  		if(Años>3) {
+	  			Antiguedad = 15;
+	  		} else {
+	  			Antiguedad = 0;
+	  		}
+	  		MontoAntiguedad = (SalarioBrutoAnual*Antiguedad/100)/12;
+	  		MontoSindicato = (SalarioBrutoAnual*Sindicato/100)/12;
+	  		SalarioTotal=((SalarioBrutoAnual)/12)+MontoAntiguedad;
+	  		Montoinss=(SalarioTotal*INSS/100)/12;
+	  		MontoIr=(SalarioTotal*IR/100)/12;
+	  		TotalDeducciones=Montoinss+MontoIr+MontoSindicato;
+	  		Montoinsspatronal=(SalarioTotal*INSSPatronal/100)/12;
+	  		SalarioNeto=SalarioTotal-TotalDeducciones;
+	  		System.out.println("***Tasas***");
+	  		System.out.println("INSS = "+INSS+"%");
+	  		System.out.println("IR = "+IR+"%");
+	  		System.out.println("Sindicato = "+Sindicato+"%");
+	  		System.out.println("INSS Patronal = "+INSSPatronal+"%");
+	  		System.out.println("Antiguedad = "+Antiguedad+"%");
+	  		System.out.println("***Ingresos del empleado***");
+	  		System.out.println("Ingreso Bruto = "+SalarioBruto);
+	  		System.out.println("Monto por antiguedad = "+MontoAntiguedad);
+	  		System.out.println("Monto del ingreso total = "+SalarioTotal);
+	  		System.out.println("***Deducciones sobre el ingresos bruto***");
+	  		System.out.println("Monto por afilaciones del sindicato = "+MontoSindicato);
+	  		System.out.println("***Deducciones sobre el ingreso total***");
+	  		System.out.println("Monto de INSS = "+Montoinss);
+	  		System.out.println("Monto de IR = "+MontoIr );
+	  		System.out.println("Monto total de deducciones = "+TotalDeducciones);
+	  		System.out.println("***Deducciones del empleador***");
+	  		System.out.println("Monto del INSS patronal ="+Montoinsspatronal);
+	  		System.out.println("***Total a pagar***");
+	  		System.out.println("Monto del ingreso Neto = "+SalarioNeto);
+	  		System.out.println("");
+	  	}
 	 
-	Scanner lector = new Scanner (System.in);
+	static Scanner lector = new Scanner (System.in);
 	
 	public void  Aspirante1() {
-
-	
-	
 			System.out.println("Ingrese los datos que se le pide a continuacion");
 			System.out.println(" Nombre completo");
 			nombre=lector.nextLine();
@@ -379,7 +451,7 @@ public void Repartidor2 () {
 				
 				break;
 	case 2:
-		System.out.println("opcion 4");
+		obj.PedirDatos();
 				break;
 				
 	case 3:
@@ -413,5 +485,4 @@ public void Repartidor2 () {
 	
 		
 	}
-
 
