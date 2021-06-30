@@ -1,187 +1,189 @@
 package RecursosHumanos;
 
-import java.util.*;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 
 public class RecursosHumanos {
 	
 	 static String  nombre, FechaNacimiento, Dirrecion, EstadoCivil, Correo, NumeroDeTelefono, NivelDeEscolaridad, PuestoAlQueAspira,ExperienciaLaboral, Habilidades,Aspirante1, Aspirante2,salario; 
-	static  String Idioma, Referencia, pregunta1, respuesta1;
+	 static  String Idioma, Referencia;
 	 static int puntajeRespuestas=2;
 	 static int puntaje=0;
-	 static int edad;
-	 static int comprobacion;
-  static int puntajeAspirante1;
-	  static int puntajeAspirante2;
-	  static boolean Repetir,Continuar;
-	  static double SalarioBruto,SalarioBrutoAnual,IR,MontoSindicato,MontoAntiguedad,SalarioTotal,Montoinss,Montoinsspatronal,MontoIr;
-	  static int Años,Antiguedad;
-	  static double TotalDeducciones,SalarioNeto;
-	  static final double INSS = 7, INSSPatronal = 22.5;
-	  static final int Sindicato = 1;
-	  static String Motivo;
-	  static double Saldo,Liquidacion,NuevoSueldo;
-	  static int Puesto,Opcion,Elegir,Seleccionar,Meses;
-	  static String Puestos[] = new String[5]; {
+	 int edad;
+	 int comprobacion;
+	 static int puntajeAspirante1;
+	 static int puntajeAspirante2;
+	 static boolean Repetir,Continuar;
+	 static double SalarioBruto,SalarioBrutoAnual,IR,MontoSindicato,MontoAntiguedad,SalarioTotal,Montoinss,Montoinsspatronal,MontoIr;
+	 static int Años,Antiguedad;
+	 static double TotalDeducciones,SalarioNeto;
+	 static final double INSS = 7, INSSPatronal = 22.5;
+	 static final int Sindicato = 1;
+	 static String Motivo;
+	 static double Saldo,Liquidacion,NuevoSueldo;
+	 static int Puesto,Opcion,Elegir,Seleccionar,Meses;
+	 static String Puestos[] = new String[5]; {
 	  		Puestos[0] = "Gerente";
 	  		Puestos[1] = "Supervisor";
 	  		Puestos[2] = "Cajero";
 	  		Puestos[3] = "Contador";
 	  		Puestos[4] = "Vendedor";
 	  }
-	  static String Renovacion[] = new String[2]; {
+	 static String Renovacion[] = new String[2]; {
 	  	Renovacion[0] = "Renovacion temporal";
 	  	Renovacion[1] = "Contratacion fija";
 	  }
-
+	  
 	  public void ContratacionFin() {
-	  	do {
-	  		try{
-	  			Repetir = false;
-	  			do {
-	  				System.out.println("Ingrese el nombre del trabajador");
-	  				nombre= lector.nextLine();
-	  			}while(nombre.equals(""));
-	  			do {
-	  				System.out.println("Ingrese el salario bruto mensual del trabajador");
-	  				SalarioBruto = lector.nextDouble();
-	  			}while(SalarioBruto<=0);
-	  			do {
-	  				System.out.println("Seleccione el puesto que ejercia el trabajador");
-	  				for(int N=0; N<Puestos.length;N++) {
-	  					System.out.println(Puestos[N]+"("+N+")");
-	  				}
-	  				Puesto = lector.nextInt();
-	  			}while(Puesto<0 || Puesto>4);
-	  	} catch(InputMismatchException ex) {
-	  		System.out.println("Ingreso un dato valido");
-	  		lector.next();
-	  		System.out.println("");
-	  		Repetir = true;
-	  	}
-	  	}while(Repetir);
-	  	
-	  	
-	  	do {
-	  		try{
-	  			Repetir = false;
-	  			do {
-	  				System.out.println("***Motivo por finalizacion***");
-	  				System.out.println("Despido(1)");
-	  				System.out.println("Finalizacion de contrato(2)");
-	  				Opcion = lector.nextInt();
-	  			}while(Opcion<1 || Opcion>2);
-	  	} catch(InputMismatchException ex) {
-	  		System.out.println("Ingreso un dato valido");
-	  		lector.next();
-	  		System.out.println("");
-	  		Repetir = true;
-	  	}
-	  	}while(Repetir);
-	  	
-	  	if(Opcion==1) {
-	  		do {
-	  			System.out.println("Ingrese el motivo del despido");
-	  			Motivo = lector.nextLine();
-	  		}while(Motivo.equals(""));
-	  	} else {
-	  		do {
-	  			try{
-	  				Repetir = false;
-	  				do {
-	  					System.out.println("Desea renovar el contrato?");
-	  					System.out.println("Si(1)");
-	  					System.out.println("No(2)");
-	  					Elegir = lector.nextInt();
-	  				}while(Elegir<1 || Elegir>2);
-	  		} catch(InputMismatchException ex) {
-	  			System.out.println("Ingreso un dato valido");
-	  			lector.next();
-	  			System.out.println("");
-	  			Repetir = true;
-	  		}
-	  		}while(Repetir);
-	  		if(Elegir==1) {
-	  			do {
-	  				try{
-	  					Repetir = false;
-	  					do {
-	  						System.out.println("Seleccione el tipo de contratacion");
-	  						for(int N=0;N<Renovacion.length;N++) {
-	  							System.out.println(Renovacion[N]+"("+N+")");
-	  						}
-	  						Seleccionar = lector.nextInt();
-	  					}while(Seleccionar<0 || Seleccionar>1);
-	  			} catch(InputMismatchException ex) {
-	  				System.out.println("Ingreso un dato valido");
-	  				lector.next();
-	  				System.out.println("");
-	  				Repetir = true;
-	  			}
-	  			}while(Repetir);
-	  			
-	  			do {
-	  				try{
-	  					Repetir = false;
-	  					if(Seleccionar==0) {
-	  						do {
-	  							System.out.println("Ingrese en meses la duracion del contrato");
-	  							Meses = lector.nextInt();
-	  						}while(Meses<0);
-	  					}
-	  					do {
-	  						System.out.println("Si desea aumentar el sueldo mensual del trabajador ingrese el monto a sumar");
-	  						System.out.println("en caso de que no ingrese un 0");
-	  						Saldo = lector.nextDouble();
-	  					}while(Saldo<0);
-	  			} catch(InputMismatchException ex) {
-	  				System.out.println("Ingreso un dato valido");
-	  				lector.next();
-	  				System.out.println("");
-	  				Repetir = true;
-	  			}
-	  			}while(Repetir);
-	  		}
-	  	}
-	  	if(Opcion==1) {
-	  		Liquidacion = SalarioBruto*3;
-	  		System.out.println("");
-	  		System.out.println("*******************************************");
-	  		System.out.println("El trabajador de nombre "+nombre);
-	  		System.out.println("Que ejercia el puesto de "+Puestos[Puesto]);
-	  		System.out.println("Con un sueldo bruto mensual de "+SalarioBruto);
-	  		System.out.println("Fue despedido por el siguiente motivo:");
-	  		System.out.println(Motivo);
-	  		System.out.println("Recibira una liquidacion de "+Liquidacion+" Por sus servicios");
-	  		System.out.println("*******************************************");
-	  		System.out.println("");
-	  	} else {
-	  		if(Elegir==2) {
-	  			System.out.println("");
-	  			System.out.println("*******************************************");
-	  			System.out.println("El trabajador de nombre "+nombre);
-	  			System.out.println("Que ejercia el puesto de "+Puestos[Puesto]);
-	  			System.out.println("Con un sueldo bruto de "+SalarioBruto);
-	  			System.out.println("Dejara la empresa por motivos de que su contrato a terminado");
-	  			System.out.println("Le agradecemos por el tiempo que trabajo para nosotros");
-	  			System.out.println("*******************************************");
-	  			System.out.println("");
-	  		} else {
-	  			NuevoSueldo = SalarioBruto+Saldo;
-	  			System.out.println("");
-	  			System.out.println("*******************************************");
-	  			System.out.println("El trabajador de nombre "+nombre);
-	  			System.out.println("Que ejercia el puesto de "+Puestos[Puesto]);
-	  			System.out.println("Con un sueldo bruto mensual de "+SalarioBruto);
-	  			System.out.println("Recibio una "+Renovacion[Seleccionar]);
-	  			if(Seleccionar==0) {
-	  				System.out.println("Que durara durante "+Meses+ " Meses");
-	  			}
-	  			System.out.println("Con un sueldo mensual de "+NuevoSueldo);
-	  			System.out.println("*******************************************");
-	  			System.out.println("");
-	  		}
-	  	}
-	  }
+		  	do {
+		  		try{
+		  			Repetir = false;
+		  			do {
+		  				System.out.println("Ingrese el nombre del trabajador");
+		  				nombre= lector.nextLine();
+		  			}while(nombre.equals(""));
+		  			do {
+		  				System.out.println("Ingrese el salario bruto mensual del trabajador");
+		  				SalarioBruto = lector.nextDouble();
+		  			}while(SalarioBruto<=0);
+		  			do {
+		  				System.out.println("Seleccione el puesto que ejercia el trabajador");
+		  				for(int N=0; N<Puestos.length;N++) {
+		  					System.out.println(Puestos[N]+"("+N+")");
+		  				}
+		  				Puesto = lector.nextInt();
+		  			}while(Puesto<0 || Puesto>4);
+		  	} catch(InputMismatchException ex) {
+		  		System.out.println("Ingreso un dato valido");
+		  		lector.next();
+		  		System.out.println("");
+		  		Repetir = true;
+		  	}
+		  	}while(Repetir);
+		  	
+		  	
+		  	do {
+		  		try{
+		  			Repetir = false;
+		  			do {
+		  				System.out.println("***Motivo por finalizacion***");
+		  				System.out.println("Despido(1)");
+		  				System.out.println("Finalizacion de contrato(2)");
+		  				Opcion = lector.nextInt();
+		  			}while(Opcion<1 || Opcion>2);
+		  	} catch(InputMismatchException ex) {
+		  		System.out.println("Ingreso un dato valido");
+		  		lector.next();
+		  		System.out.println("");
+		  		Repetir = true;
+		  	}
+		  	}while(Repetir);
+		  	
+		  	if(Opcion==1) {
+		  		do {
+		  			System.out.println("Ingrese el motivo del despido");
+		  			Motivo = lector.nextLine();
+		  		}while(Motivo.equals(""));
+		  	} else {
+		  		do {
+		  			try{
+		  				Repetir = false;
+		  				do {
+		  					System.out.println("Desea renovar el contrato?");
+		  					System.out.println("Si(1)");
+		  					System.out.println("No(2)");
+		  					Elegir = lector.nextInt();
+		  				}while(Elegir<1 || Elegir>2);
+		  		} catch(InputMismatchException ex) {
+		  			System.out.println("Ingreso un dato valido");
+		  			lector.next();
+		  			System.out.println("");
+		  			Repetir = true;
+		  		}
+		  		}while(Repetir);
+		  		if(Elegir==1) {
+		  			do {
+		  				try{
+		  					Repetir = false;
+		  					do {
+		  						System.out.println("Seleccione el tipo de contratacion");
+		  						for(int N=0;N<Renovacion.length;N++) {
+		  							System.out.println(Renovacion[N]+"("+N+")");
+		  						}
+		  						Seleccionar = lector.nextInt();
+		  					}while(Seleccionar<0 || Seleccionar>1);
+		  			} catch(InputMismatchException ex) {
+		  				System.out.println("Ingreso un dato valido");
+		  				lector.next();
+		  				System.out.println("");
+		  				Repetir = true;
+		  			}
+		  			}while(Repetir);
+		  			
+		  			do {
+		  				try{
+		  					Repetir = false;
+		  					if(Seleccionar==0) {
+		  						do {
+		  							System.out.println("Ingrese en meses la duracion del contrato");
+		  							Meses = lector.nextInt();
+		  						}while(Meses<0);
+		  					}
+		  					do {
+		  						System.out.println("Si desea aumentar el sueldo mensual del trabajador ingrese el monto a sumar");
+		  						System.out.println("en caso de que no ingrese un 0");
+		  						Saldo = lector.nextDouble();
+		  					}while(Saldo<0);
+		  			} catch(InputMismatchException ex) {
+		  				System.out.println("Ingreso un dato valido");
+		  				lector.next();
+		  				System.out.println("");
+		  				Repetir = true;
+		  			}
+		  			}while(Repetir);
+		  		}
+		  	}
+		  	if(Opcion==1) {
+		  		Liquidacion = SalarioBruto*3;
+		  		System.out.println("");
+		  		System.out.println("*******************************************");
+		  		System.out.println("El trabajador de nombre "+nombre);
+		  		System.out.println("Que ejercia el puesto de "+Puestos[Puesto]);
+		  		System.out.println("Con un sueldo bruto mensual de "+SalarioBruto);
+		  		System.out.println("Fue despedido por el siguiente motivo:");
+		  		System.out.println(Motivo);
+		  		System.out.println("Recibira una liquidacion de "+Liquidacion+" Por sus servicios");
+		  		System.out.println("*******************************************");
+		  		System.out.println("");
+		  	} else {
+		  		if(Elegir==2) {
+		  			System.out.println("");
+		  			System.out.println("*******************************************");
+		  			System.out.println("El trabajador de nombre "+nombre);
+		  			System.out.println("Que ejercia el puesto de "+Puestos[Puesto]);
+		  			System.out.println("Con un sueldo bruto de "+SalarioBruto);
+		  			System.out.println("Dejara la empresa por motivos de que su contrato a terminado");
+		  			System.out.println("Le agradecemos por el tiempo que trabajo para nosotros");
+		  			System.out.println("*******************************************");
+		  			System.out.println("");
+		  		} else {
+		  			NuevoSueldo = SalarioBruto+Saldo;
+		  			System.out.println("");
+		  			System.out.println("*******************************************");
+		  			System.out.println("El trabajador de nombre "+nombre);
+		  			System.out.println("Que ejercia el puesto de "+Puestos[Puesto]);
+		  			System.out.println("Con un sueldo bruto mensual de "+SalarioBruto);
+		  			System.out.println("Recibio una "+Renovacion[Seleccionar]);
+		  			if(Seleccionar==0) {
+		  				System.out.println("Que durara durante "+Meses+ " Meses");
+		  			}
+		  			System.out.println("Con un sueldo mensual de "+NuevoSueldo);
+		  			System.out.println("*******************************************");
+		  			System.out.println("");
+		  		}
+		  	}
+		  }
 	  	public void PedirDatos() {
 	  		do {
 	  			try{
@@ -254,9 +256,12 @@ public class RecursosHumanos {
 	  		System.out.println("");
 	  	}
 	 
-	static Scanner lector = new Scanner (System.in);
+	Scanner lector = new Scanner (System.in);
 	
 	public void  Aspirante1() {
+
+	
+	
 			System.out.println("Ingrese los datos que se le pide a continuacion");
 			System.out.println(" Nombre completo");
 			nombre=lector.nextLine();
@@ -268,22 +273,26 @@ public class RecursosHumanos {
 			
 			System.out.println("");	
 			do {
+			do {
 			comprobacion=2;
 			try {
-			System.out.println("Ingrese su edad");	
-			edad=lector.nextInt();
 			
-			
+				System.out.println("Ingrese su edad");	
+				edad=lector.nextInt();
+				if(edad<18 || edad>59){
+					System.out.println("Usted no puede trabajar en esta empresa porque no cumple los requisitos de edad de entre 18 y 59 años");
+					System.out.println("Ingrese una edad valida");
+				}
 			} catch (InputMismatchException e) {
 				System.out.println("Solo puede ingresar numeros");
 				lector.next();
-				comprobacion=1;							
+				comprobacion=1;	
+				
 			}
 			}while(comprobacion!=2);
-			if(edad<18 || edad>59) {
-				System.out.println("Usted no puede trabajar en esta empresa porque no cumple los requisitos de edad de entre 18 y 59 años");
+			}while(edad<18 || edad>59); 
 				
-			}else {
+			
 			System.out.println("");	
 			System.out.println("Fecha de nacimiento");
 		    lector.nextLine();
@@ -359,11 +368,19 @@ public class RecursosHumanos {
 				System.out.println("El campo no puede estar vacio");
 				Referencia=lector.nextLine();
 			}
-			}
+			
 			puntajeAspirante1=puntajeRespuestas*puntaje;
 			System.out.println("Su puntaje es " + puntajeAspirante1);
 	
 	}
+	
+
+
+
+
+	
+
+
 public void  Aspirante2() {
 	
 	
@@ -378,22 +395,26 @@ public void  Aspirante2() {
 	
 	System.out.println("");	
 	do {
+	do {
 	comprobacion=2;
 	try {
-	System.out.println("Ingrese su edad");	
-	edad=lector.nextInt();
 	
-	
+		System.out.println("Ingrese su edad");	
+		edad=lector.nextInt();
+		if(edad<18 || edad>59){
+			System.out.println("Usted no puede trabajar en esta empresa porque no cumple los requisitos de edad de entre 18 y 59 años");
+			System.out.println("Ingrese una edad valida");
+		}
 	} catch (InputMismatchException e) {
 		System.out.println("Solo puede ingresar numeros");
 		lector.next();
-		comprobacion=1;							
+		comprobacion=1;	
+		
 	}
 	}while(comprobacion!=2);
-	if(edad<18 || edad>59) {
-		System.out.println("Usted no puede trabajar en esta empresa porque no cumple los requisitos de edad de entre 18 y 59 años");
-		edad=lector.nextInt();
-	}else {
+	}while(edad<18 || edad>59); 
+		
+	
 	System.out.println("");	
 	System.out.println("Fecha de nacimiento");
     lector.nextLine();
@@ -470,14 +491,13 @@ while(FechaNacimiento.equals("")){
 		Referencia=lector.nextLine();
 	}
 	
-	}
+	
 	
 	puntajeAspirante2=puntajeRespuestas*puntaje;
 	System.out.println(puntajeAspirante2);
 
 
 }
-
 
 public void GerenteAdministrativo () {
 	nombre="Steven Daniel Lopez ";
@@ -526,6 +546,8 @@ public void Repartidor2 () {
 	nombre="Octavio Noel Torrez ";
 	edad=58;	
 }
+
+
 	public static void main(String[] args) {
 		
 		RecursosHumanos obj = new RecursosHumanos ();
@@ -563,55 +585,25 @@ public void Repartidor2 () {
 	
 	
 	case 1:
-		do {
-			comprobacion=2;
-			try {
-				do {
-				
-				System.out.println("1.Reclutamiento, Seleccion y Contratacion de personal");
-				System.out.println("2.Salir");
-				opcion = lector.nextInt();
-				switch(opcion) {
-				case 1:
+		
 					
-								System.out.println("Aspirante 1");
-								obj.Aspirante1();
-								System.out.println("Aspirante 2");
-								obj.Aspirante2();
-
-								if(puntajeAspirante1>puntajeAspirante2) {
-									System.out.println("Aspirante 1 Contratado");
-								}else if(puntajeAspirante2>puntajeAspirante1) {
-									System.out.println("Aspirante 2 Contratado");
-								}
-								break;
-								
-								
-							case 2:
-								break;
-							default: 
-								System.out.println("");
-								System.out.println("La opcion que eligio es invalida");
-								System.out.println("");
-								}
-				}while(opcion != 2);
-								
-						} catch (InputMismatchException e) {
-							System.out.println("");
-							System.out.println("Solo puede ingresar numeros");
-							System.out.println("");
-							lector.next();
-							comprobacion=1;							
-						}
-						}while(comprobacion!=2);	
-				
-				break;
+    System.out.println("Aspirante 1");
+    obj.Aspirante1();
+    System.out.println("Aspirante 2");
+	obj.Aspirante2();
+	if(puntajeAspirante1>puntajeAspirante2) {
+		System.out.println("Aspirante 1 Contratado");
+	}else if(puntajeAspirante2>puntajeAspirante1) {
+		System.out.println("Aspirante 2 Contratado");
+	}
+	break;
+							
 	case 2:
 		obj.PedirDatos();
 				break;
 				
 	case 3:
-				obj.ContratacionFin();
+				
 				break;
 	case 4:
 				System.out.println("opcion 4");
@@ -641,4 +633,5 @@ public void Repartidor2 () {
 	
 		
 	}
+
 
