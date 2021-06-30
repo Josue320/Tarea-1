@@ -388,11 +388,7 @@ public class RecursosHumanos {
 			
 			}
 			 
-			 Pattern pat = Pattern.compile("abc");
-		     Matcher mat = pat.matcher(nombre);                                                                              
-			     if (mat.matches()) {
-			         System.out.println("SI");
-			     } 
+
 			System.out.println("");	
 			do {
 			do {
